@@ -166,7 +166,7 @@ export class ShoppingCartComponent {
     this.router.navigate(['purchasedTours']);
   }
 
-  checkCoupon(code: string, tourId: number): void {
+  /*checkCoupon(code: string, tourId: number): void {
 
     if(!code){
       return
@@ -239,6 +239,38 @@ export class ShoppingCartComponent {
           alert("Coupon successfuly used!")
 
         }
+
+      },
+      error: () => {
+      }
+    })
+
+
+  }*/
+
+  checkCoupon(code: string, tourId: number): void {
+
+    this.marketplaceService.checkCoupon(code, tourId).subscribe({
+      next: (coupon: Coupon) => {
+        if(!coupon){
+          alert("Code is invalid, expired or for the wrong tour")
+          return
+        }
+
+        if(this.usedCoupons.includes(coupon.id)){
+          alert("This coupon has already been used!")
+          return
+        }
+
+        for (const orderItem of this.shoppingCart.orderItems) {
+          if(orderItem.idTour === tourId) {
+            orderItem.price -= (coupon.discount/100)*orderItem.price
+          }
+        }
+
+        this.shoppingCart.total = this.calculateTotal();
+        this.usedCoupons.push(coupon.id)
+        alert("Coupon successfuly used!")
 
       },
       error: () => {
