@@ -123,7 +123,7 @@ export class TourComponent implements OnInit {
     this.service.getCouponsByAuthor(userId).subscribe({
       next: (result: Coupon[]) => {
         this.coupons = result;
-        console.log(this.coupons);
+        console.log('Jedi govna', this.coupons);
       },
       error(err: any) {
         console.log(err);
@@ -230,8 +230,8 @@ export class TourComponent implements OnInit {
         console.log('Coupon deleted successfully');
         this.loadCoupons(); // Reload the coupons after deletion
       },
-      error: (err) => {
-        console.error('Error deleting coupon:', err);
+      error: () => {
+        console.error('Error deleting coupon:');
         // Handle the error, show a message, etc.
       },
     });
@@ -286,7 +286,7 @@ export class TourComponent implements OnInit {
 
   deleteTour(tour: Tour): void {
     this.service.deleteCoupon(this.getCoupon(tour.id).id).subscribe({
-      next: (_) => {
+      next: () => {
         this.loadCoupons();
         this.service.deleteTour(tour).subscribe({
           next: (_) => {

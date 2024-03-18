@@ -109,16 +109,66 @@
               <button class="btn-show-points" (click)="viewMap(t.id)" color="primary" mat-icon-button *ngIf="t.id !== undefined">🗺️</button>
             </div>
 
-            <div class="foot-column eq-coup-buttons">
-<!--              <button class="equipment-coupon" (click)="openEquipmentDialog(t)">Add equipment</button>-->
+            <!-- <div class="foot-column eq-coup-buttons">
               <button class="equipment-coupon" (click)="onCreateCoupon(t.id)">Create coupon</button>
-            </div>
+            </div> -->
 
             <div class="foot-column publish-buttons">
               <button class="publish-archive" *ngIf="t.status !== 'Published'" (click)="publishTour(t)">Publish</button>
               <button class="publish-archive" *ngIf="t.status === 'Published'" (click)="archiveTour(t)">Archive</button>
             </div>
           </div>
+
+          <div class="coupon-details" *ngIf="hasCoupon(t.id)">
+            <div class="coupon-info" *ngIf="!isEditing(t.id)">
+              <label font-weight="bold">Code: <b>{{ getCoupon(t.id)?.code }}</b></label>
+              <label>Discount: <b>{{ getCoupon(t.id)?.discount }}%</b></label>
+              <label>Expires: <b>{{ getCoupon(t.id)?.expirationDate | date: 'dd MMM yyyy' }}</b></label>
+              <!-- Add more coupon details as needed -->        
+
+              <div class="coupon-buttons">
+                <button matTooltip="Edit coupon" mat-icon-button color="primary" (click)="startEditing(t.id)">
+                  <mat-icon>edit-button</mat-icon>
+                </button>
+                <button matTooltip="Delete coupon" mat-icon-button color="warn" (click)="deleteCoupon(t.id)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+            <div *ngIf="isEditing(t.id)">
+              <!-- Use ngModel to bind the input to a variable in your component -->
+              <div [formGroup]="editForm" class="mat-form-row">
+
+                  <mat-form-field class="discount-field">
+                    <input matInput formControlName="discount" placeholder="Discount (%)" type="number" min="1" max="100">
+                  </mat-form-field>
+
+
+
+                  <mat-form-field class="expiration-field"> 
+                    <input matInput [matDatepicker]="picker" formControlName="expirationDate" placeholder="Expiration Date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+
+              </div>
+
+              <div class="edit-actions">
+                <button mat-button color="primary" class="action-button" (click)="saveEdit(t.id)">Save</button>
+                <button mat-button color="warn" class="action-button" (click)="cancelEdit(t.id)">Cancel</button>
+              </div>
+            </div>
+          </div>
+          <div class="noCoupon" *ngIf="!hasCoupon(t.id)">
+              <!--<button class="create-coupon-btn" (click)="onCreateCoupon(t.id)">
+                Create coupon
+              </button> -->
+              <div class="foot-column eq-coup-buttons">
+                <!--              <button class="equipment-coupon" (click)="openEquipmentDialog(t)">Add equipment</button>-->
+                              <button class="equipment-coupon" (click)="onCreateCoupon(t.id)">Create coupon</button>
+              </div>
+          </div>
+
         </div>
       </div>
     </div>
