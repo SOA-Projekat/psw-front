@@ -62,11 +62,11 @@ export class AdministrationService {
 
 
   getProfile(id: number): Observable<Profile>{
-    return this.http.get<Profile>('https://localhost:44333/api/profile/' + id);
+    return this.http.get<Profile>('http://localhost:8083/profile/' + id);
   }
 
   updateProfile(profile: Profile, id: number): Observable<Profile>{
-    return this.http.put<Profile>('https://localhost:44333/api/profile/' + id, profile);
+    return this.http.put<Profile>('http://localhost:8083/profile/' + id, profile);
   }
 
   // App ratings
