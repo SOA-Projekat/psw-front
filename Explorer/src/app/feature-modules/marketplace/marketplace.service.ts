@@ -360,6 +360,7 @@ export class MarketplaceService {
     return this.http.get<TourGo>('https://localhost:44333/api/marketplace/selectedTour/' + id);
   } 
 
+  
   /*getShoppingCart(touristId: number): Observable<ShoppingCart>{
     return this.http.get<ShoppingCart>('https://localhost:44333/api/shoppingcart/'+touristId);
   }*/

@@ -1,0 +1,31 @@
+<div class="tour-details-container">
+    <div class="tour-header">
+        <h2 class="tour-name">{{ tour?.name }}</h2>
+        <p class="price">Price: ${{ tour?.price }}</p>
+        <p class="description">{{ tour?.description }}</p>
+    </div>
+
+    <div class="tour-info">
+        <div class="keypoints">
+            <h3>Key Points:</h3>
+            <ul>
+                <li *ngFor="let keyPoint of tour?.tourPoints">
+                    <p><strong>Name:</strong> {{ keyPoint.name }}</p>
+                    <p><strong>Description:</strong> {{ keyPoint.description }}</p>
+                    <!-- Add more details here if needed -->
+                </li>
+            </ul>
+        </div>
+
+        <div class="equipments">
+            <h3>Equipments:</h3>
+            <ul>
+                <li *ngFor="let equipment of tour?.equipments">
+                    <p><strong>Name:</strong> {{ equipment.name }}</p>
+                    <p><strong>Description:</strong> {{ equipment.description }}</p>
+                    <!-- Add more details here if needed -->
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

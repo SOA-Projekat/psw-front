@@ -95,6 +95,7 @@ import { ShowCompetitionComponent } from 'src/app/feature-modules/competition/sh
 import { OneCompetitionComponent } from 'src/app/feature-modules/competition/one-competition/one-competition.component';
 import { WinnerApplyComponent } from 'src/app/feature-modules/competition/winner-apply/winner-apply.component';
 import { ApplyFormComponent } from 'src/app/feature-modules/competition/apply-form/apply-form.component';
+import { TourGoOverviewComponent } from 'src/app/feature-modules/administration/tour-go-overview/tour-go-overview.component';
 
 
 const routes: Routes = [
@@ -162,7 +163,7 @@ const routes: Routes = [
   { path: 'activeEncounter', component:ActivatedExecutionComponent},
   { path: 'createCoupon/:id', component: CouponFormComponent},
   { path: 'createAuthorCoupon', component: AuthorCouponFormComponent},
-
+  { path: 'singleTour/:id', component: TourGoOverviewComponent},
   { path: 'tourBundleCreate', component: TourBundleCreateComponent},
   { path: 'tourBundlesShow', component: TourBundlesShowComponent},
   { path: 'publishedBundlesShow', component: PublishedBundlesShowComponent},

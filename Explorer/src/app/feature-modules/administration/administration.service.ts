@@ -18,6 +18,7 @@ import { TouristXP } from './model/tourist-xp.model';
 import { Equipment } from '../tour-authoring/tour/model/equipment.model';
 import { UserMileage } from './model/user-statistics.model';
 import { FollowerMessage } from './model/follower-message.model';
+import { TourGo } from '../tour-authoring/tour/model/tour.model';
 
 
 @Injectable({
@@ -99,6 +100,10 @@ export class AdministrationService {
     return this.http.get<UserPosition>(environment.apiHost+`administration/userPosition/${userId}`, { params });
   }
   
+  getSingleTourGo(id: number) :Observable<TourGo>{
+    return this.http.get<TourGo>('https://localhost:44333/api/administration/tour/go/single/' +id);
+  }
+
 
   getAllTourPointRequests(): Observable<PagedResults<TourPointRequest>> {
     return this.http.get<PagedResults<TourPointRequest>>(environment.apiHost + `tourist/publicTourPointRequest`);
