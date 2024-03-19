@@ -6,5 +6,5 @@ export interface TourPoint {
   imageUrl: string;
   latitude?: number;
   longitude?: number;
-  secret: string;
+ 
 }

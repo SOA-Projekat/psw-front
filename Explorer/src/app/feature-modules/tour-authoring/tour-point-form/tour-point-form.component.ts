@@ -91,7 +91,7 @@ export class TourPointFormComponent implements OnChanges, OnInit {
     imageUrl: new FormControl('', [Validators.required]),
     latitude: new FormControl(0, [Validators.required]),
     longitude: new FormControl(0, [Validators.required]),
-    secret: new FormControl('', [Validators.required]),
+    tourID: new FormControl(0, [Validators.required]),
   });
 
   addTourPoint(): void {
@@ -103,7 +103,7 @@ export class TourPointFormComponent implements OnChanges, OnInit {
       imageUrl: this.tourPointForm.value.imageUrl || '', //this.imageUrl || '',
       latitude: 0,
       longitude: 0,
-      secret: this.tourPointForm.value.secret || '',
+      
     };
 
     this.mapService.coordinate$.subscribe((coordinates) => {
@@ -162,7 +162,7 @@ export class TourPointFormComponent implements OnChanges, OnInit {
       imageUrl: this.tourPointForm.value.imageUrl || '',
       latitude: 0,
       longitude: 0,
-      secret: this.tourPointForm.value.secret || '',
+      
     };
 
     tourPoint.id = this.tourPoint.id;

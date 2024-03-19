@@ -305,7 +305,7 @@ styles: [`
         userId: this.tokenStorage.getUserId(),
         price: this.calculatePrice(),
         //tags: ['xzy', 'abc'],
-        tourPoints: this.makeTourPointsForAll(),
+        tourPoints: [],
         equipments:[]
         //tourCharacteristics: this.getTourCharacteristic(),
         //tourReviews: [],
@@ -383,26 +383,26 @@ styles: [`
       });
     }
 
-    makeTourPointsForAll() : TourPoint[] {
-      var tourPoints: TourPoint[] = [];
+    // makeTourPointsForAll() : TourPoint[] {
+    //   var tourPoints: TourPoint[] = [];
 
-      this.todo.forEach(tour => {
-          tour.tourPoints.forEach(tourPoint => {
-            var point: TourPoint = {
-              tourId: tour.id || 0,
-              name: tourPoint.name || '',
-              description: tourPoint.description || '',
-              imageUrl: tourPoint.imageUrl || '',
-              latitude: tourPoint.latitude,
-              longitude: tourPoint.longitude,
-              secret: tourPoint.secret || '',
-            }
-            tourPoints.push(point)
-          })
+    //   this.todo.forEach(tour => {
+    //       tour.tourPoints.forEach(tourPoint => {
+    //         var point: TourPoint = {
+    //           tourId: tour.id || 0,
+    //           name: tourPoint.name || '',
+    //           description: tourPoint.description || '',
+    //           imageUrl: tourPoint.imageUrl || '',
+    //           latitude: tourPoint.latitude,
+    //           longitude: tourPoint.longitude,
+    //           secret: tourPoint.secret || '',
+    //         }
+    //         tourPoints.push(point)
+    //       })
 
-      })
-      return tourPoints;
-    }
+    //   })
+    //   return tourPoints;
+    // }
 
     getTourCharacteristic(): TourCharacteristic[] {
 

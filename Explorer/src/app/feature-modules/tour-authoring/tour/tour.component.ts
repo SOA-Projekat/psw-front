@@ -357,26 +357,26 @@ export class TourComponent implements OnInit {
   }
 
 
-  onAddPublicPoint(t:Tour,ptp:PublicTourPoint){
-    const tourPoint: TourPoint = {
-      tourId: t.id || 0,
+  // onAddPublicPoint(t:Tour,ptp:PublicTourPoint){
+  //   const tourPoint: TourPoint = {
+  //     tourId: t.id || 0,
 
-      name: ptp.name,
-      description: ptp.description,
-      imageUrl: ptp.imageUrl,
-      latitude: ptp.latitude,
-      longitude: ptp.longitude,
-      secret: ''
-    };
+  //     name: ptp.name,
+  //     description: ptp.description,
+  //     imageUrl: ptp.imageUrl,
+  //     latitude: ptp.latitude,
+  //     longitude: ptp.longitude,
+      
+  //   };
 
-    this.service.addTourPoint(tourPoint).subscribe({
-      next: () => {
-        this.publicTourPointsForTour.length = 0;
-        this.publicTourPoint.length =0;
-        this.loadPublicTourPoints(t);
-      },
-    });
-  }
+  //   this.service.addTourPoint(tourPoint).subscribe({
+  //     next: () => {
+  //       this.publicTourPointsForTour.length = 0;
+  //       this.publicTourPoint.length =0;
+  //       this.loadPublicTourPoints(t);
+  //     },
+  //   });
+  // }
 
 
   onAddTourClicked() {

@@ -89,7 +89,7 @@ export class TourTouristComponent implements OnInit {
             imageUrl: ptp.imageUrl,
             latitude: ptp.latitude,
             longitude: ptp.longitude,
-            secret: '',
+            
           };
 
           this.AddTourPointToTour(tourPoint);
