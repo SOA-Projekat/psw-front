@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { TourService } from '../tour.service';
-import { Tour } from './model/tour.model';
+import { Tour, TourGo } from './model/tour.model';
 import { TokenStorage } from 'src/app/infrastructure/auth/jwt/token.service';
 import { PagedResults } from 'src/app/shared/model/paged-results.model';
 
@@ -27,6 +27,7 @@ export class TourComponent implements OnInit {
 
   coupons: Coupon[] = [];
   tour: Tour[] = [];
+  tourGO: TourGo[]= [];
   selectedTour: Tour;
   page: number = 1;
   pageSize: number = 20;
@@ -80,6 +81,22 @@ export class TourComponent implements OnInit {
     });
   }
 
+  loadToursGo(){
+    const userId = this.tokenStorage.getUserId();
+
+    this.service.getToursByGuideGo(userId).subscribe({
+      next: (result: TourGo[]) => {
+        this.tourGO = result;
+        
+
+        const tourIds = this.tour.map((tour) => tour.id);
+      },
+      error(err: any) {
+        console.log(err);
+      },
+    });
+  }
+
   loadEquipment() {
     this.equipmentService
       .getEquipment()
@@ -113,8 +130,8 @@ export class TourComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadTours();
-    this.loadCoupons();
+    this.loadToursGo();
+    //this.loadCoupons();
   }
 
   loadCoupons(): void {

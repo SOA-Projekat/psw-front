@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TourService } from '../tour.service';
-import { Tour } from '../tour/model/tour.model';
+import { Tour, TourGo } from '../tour/model/tour.model';
 import { DifficultyLevel } from '../tour/model/tour.model';
 import { Status } from '../tour/model/tour.model';
 import { takeUntil } from 'rxjs';
@@ -52,17 +52,17 @@ export class TourFormComponent implements OnChanges {
 
   addTour(): void {
     console.log(this.tourForm.value);
-    const tour: Tour = {
+    const tour: TourGo = {
       name: this.tourForm.value.name || '',
       description: this.tourForm.value.description || '',
-      status: Status.Draft,
-      difficultyLevel: this.tourForm.value.difficulytLevel as DifficultyLevel,
-      UserId: this.tokenStorage.getUserId(),
+      status: 0,
+      difficultyLevel: 0,
+      userId: this.tokenStorage.getUserId(),
       price: this.tourForm.value.price || 0,
-      tags: ['xzy', 'abc'],
+      equipments:[],
       tourPoints: [],
-      tourCharacteristics: [],
-      tourReviews: [],
+      
+      
     };
 
     this.service.addTour(tour).subscribe({

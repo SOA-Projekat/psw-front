@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Status, Tour } from '../../tour-authoring/tour/model/tour.model';
+import { Status, Tour, TourGo } from '../../tour-authoring/tour/model/tour.model';
 import { AuthService } from 'src/app/infrastructure/auth/auth.service';
 import { Router } from '@angular/router';
 import { MarketplaceService } from '../../marketplace/marketplace.service';
@@ -297,20 +297,21 @@ styles: [`
     }
   
     connectTours() : void {
-      const tour: Tour = {
+      const tour: TourGo = {
         name: this.compositeTourForm.value.name || 'ime',
         description: 'opis',
-        status: Status.Draft,
-        difficultyLevel: this.calculateDifficultyLevel(),
-        UserId: this.tokenStorage.getUserId(),
+        status: 0,
+        difficultyLevel: 0,
+        userId: this.tokenStorage.getUserId(),
         price: this.calculatePrice(),
-        tags: ['xzy', 'abc'],
+        //tags: ['xzy', 'abc'],
         tourPoints: this.makeTourPointsForAll(),
-        tourCharacteristics: this.getTourCharacteristic(),
-        tourReviews: [],
+        equipments:[]
+        //tourCharacteristics: this.getTourCharacteristic(),
+        //tourReviews: [],
       };
       this.service.addTour(tour).subscribe({
-        next: (result: Tour) => {
+        next: (result: TourGo) => {
           this.getTourObjects(result.id || 0);
           this.addComplexTourEquipment(result.id || 0);
           this.dialogRef.close();

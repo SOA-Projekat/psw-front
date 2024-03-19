@@ -7,7 +7,7 @@ import { TourPoint } from './model/tourPoints.model';
 import { TourObject } from './model/tourObject.model';
 
 import { environment } from 'src/env/environment';
-import { Tour } from './tour/model/tour.model';
+import { Tour, TourGo } from './tour/model/tour.model';
 
 import { ObjInTour } from './model/objInTour.model';
 
@@ -111,10 +111,16 @@ export class TourAuthoringService {
     );
   }
 
-  addTour(tour: Tour): Observable<Tour> {
+  getToursByGuideGo(userId:number):Observable<TourGo[]>{
+    return this.http.get<TourGo[]>(
+      environment.apiHost + `administration/tour/go/${userId}`
+    );
+  }
+
+  addTour(tour: TourGo): Observable<TourGo> {
     console.log(tour);
-    return this.http.post<Tour>(
-      environment.apiHost + 'administration/tour',
+    return this.http.post<TourGo>(
+      environment.apiHost + 'administration/tour/go',
       tour
     );
   }
