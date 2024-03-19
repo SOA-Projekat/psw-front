@@ -92,7 +92,7 @@ export class TourDetailsComponent implements OnInit{
         idTour: this.tour.id!
       };
       this.shoppingCart.orderItems.push(newOrderItem);
-      this.shoppingCart.total += this.tour.price
+      this.shoppingCart.total += this.tour.price;
       this.service.addOrderItem(this.shoppingCart).subscribe({
         next: (data: ShoppingCart) => {
           this.buyButton = false;

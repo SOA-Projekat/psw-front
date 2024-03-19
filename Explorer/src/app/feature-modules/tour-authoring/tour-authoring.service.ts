@@ -355,20 +355,34 @@ export class TourAuthoringService {
     );
   }
 
-  getCouponsByAuthor(authorId:number): Observable<Coupon[]> {
+  /*getCouponsByAuthor(authorId:number): Observable<Coupon[]> {
     return this.http.get<Coupon[]>(
       environment.apiHost + 'authoring/coupon/' + authorId
     );
-  }
+  }*/
 
-  updateCoupon(coupon:Coupon): Observable<Coupon> {
+  /*updateCoupon(coupon:Coupon): Observable<Coupon> {
     return this.http.put<Coupon>(environment.apiHost + 'authoring/coupon/' + coupon.id,
     coupon
   );
+  }*/
+
+  /*deleteCoupon(couponId:number): Observable<void> {
+    return this.http.delete<void>(environment.apiHost + 'authoring/coupon/' + couponId);
+  }*/
+
+  getCouponsByAuthor(authorId: number): Observable<Coupon[]> {
+    return this.http.get<Coupon[]>('http://localhost:8082/authoring/coupon/' + authorId.toString())
   }
 
-  deleteCoupon(couponId:number): Observable<void> {
-    return this.http.delete<void>(environment.apiHost + 'authoring/coupon/' + couponId);
+  deleteCoupon(id: number): any {
+    return this.http.delete<any>('http://localhost:8082/authoring/coupon/' + id.toString())
+  }
+
+  updateCoupon(coupon:Coupon): Observable<Coupon> {
+    return this.http.put<Coupon>('http://localhost:8082/authoring/coupon/' + coupon.id,
+    coupon
+  );
   }
 
 
