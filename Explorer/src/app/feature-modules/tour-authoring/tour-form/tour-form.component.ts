@@ -25,7 +25,7 @@ export class TourFormComponent implements OnChanges {
   difficultyLevels = Object.values(DifficultyLevel);
   @Output() addTourClicked = new EventEmitter<null>();
   @Output() tourUpdated = new EventEmitter<null>();
-  @Input() tour: Tour;
+  @Input() tour: TourGo;
   @Input() shouldEdit: boolean = false;
 
   constructor(
@@ -43,8 +43,8 @@ export class TourFormComponent implements OnChanges {
   tourForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
-    status: new FormControl('', [Validators.required]),
-    difficulytLevel: new FormControl('', [Validators.required]),
+    status: new FormControl(0, [Validators.required]),
+    difficulytLevel: new FormControl(0, [Validators.required]),
     price: new FormControl(0, [Validators.required] )
   });
 

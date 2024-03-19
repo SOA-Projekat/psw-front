@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Tour } from '../../tour-authoring/tour/model/tour.model';
+import { Tour, TourGo } from '../../tour-authoring/tour/model/tour.model';
 import { MarketplaceService } from '../marketplace.service';
 import { AuthService } from 'src/app/infrastructure/auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,7 +14,7 @@ import { Coupon } from '../model/coupon.model';
 export class CouponFormComponent implements OnInit{
 
   couponForm: FormGroup;
-  tour: Tour = {} as Tour;
+  tour: TourGo = {} as TourGo;
   authorId: number
   minDate: Date
 
@@ -37,7 +37,7 @@ export class CouponFormComponent implements OnInit{
     
     const tourId = +this.route.snapshot.paramMap.get('id')!;
     this.marketplaceService.getSelectedTour(tourId).subscribe({
-      next: (result: Tour)=>{
+      next: (result: TourGo)=>{
         this.tour = result;
         console.log(this.tour.price);
       },

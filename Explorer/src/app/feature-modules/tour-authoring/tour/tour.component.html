@@ -57,11 +57,11 @@
         [tour]="selectedTour"
         (closeTourPointForm)="onClose()"
       ></xp-tour-point-form>
-      <xp-object-form
+      <!--<xp-object-form
         *ngIf="shouldAddObject"
         [tour]="selectedTour"
         (closeForm)="onCloseObject()"
-      ></xp-object-form>
+      ></xp-object-form>-->
 
       <xp-tour-form
         [tour]="selectedTour"
@@ -72,27 +72,18 @@
     </div>
 
     <div class="tours">
-      <div *ngFor="let t of tour" class="card">
+      <div *ngFor="let t of tourGO" class="card">
         <div class="card-container">
           <div class="card-header">
             <div class="head-column">
               <p class="head-title">{{ t.name }}</p>
             </div>
-            <div class="head-column">
-              <p class="head-status" [ngClass]="{'draft-status': t.status === 'Draft', 'published-status': t.status === 'Published'}">{{ t.status }}</p>
-            </div>
-            <div class="head-column">
-              <button class="btn-delete-tour" (click)="deleteTour(t)" mat-icon-button color="accent">
-                <mat-icon>delete</mat-icon>
-              </button>
-            </div>
+            
+            
           </div>
 
           <div class="card-details">
-            <div class="det-subtitle">
-              <p class="det-price">Price: {{ t.price }}</p>
-              <p class="det-difficulty" [ngClass]="{'easy': t.difficultyLevel === 'Easy', 'moderate': t.difficultyLevel === 'Moderate', 'difficult': t.difficultyLevel === 'Difficult'}">{{ t.difficultyLevel }}</p>
-            </div>
+            
             <div class="det-description">
               <p class="det-description-text">{{ t.description }}</p>
             </div>
@@ -103,20 +94,20 @@
               <button (click)="onAddPoint(t)" color="primary" mat-icon-button>
                 <mat-icon>add</mat-icon>
               </button>
-              <button (click)="onAddObj(t)" color="primary" mat-icon-button>
+              <!--<button (click)="onAddObj(t)" color="primary" mat-icon-button>
                 <mat-icon>restaurant</mat-icon>
-              </button>
+              </button>-->
               <button class="btn-show-points" (click)="viewMap(t.id)" color="primary" mat-icon-button *ngIf="t.id !== undefined">🗺️</button>
             </div>
 
             <!-- <div class="foot-column eq-coup-buttons">
               <button class="equipment-coupon" (click)="onCreateCoupon(t.id)">Create coupon</button>
-            </div> -->
+            </div> 
 
             <div class="foot-column publish-buttons">
               <button class="publish-archive" *ngIf="t.status !== 'Published'" (click)="publishTour(t)">Publish</button>
               <button class="publish-archive" *ngIf="t.status === 'Published'" (click)="archiveTour(t)">Archive</button>
-            </div>
+            </div>-->
           </div>
 
           <div class="coupon-details" *ngIf="hasCoupon(t.id)">

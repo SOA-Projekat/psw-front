@@ -15,7 +15,7 @@ import {
 } from '@angular/forms';
 import { TourPoint } from '../model/tourPoints.model';
 import { TourAuthoringService } from '../tour-authoring.service';
-import { Tour } from '../tour/model/tour.model';
+import { Tour, TourGo } from '../tour/model/tour.model';
 import { MapService } from 'src/app/shared/map/map.service';
 import { TransportType } from '../tour/model/tourCharacteristic.model';
 import { Router } from '@angular/router';
@@ -37,7 +37,7 @@ export class TourPointFormComponent implements OnChanges, OnInit {
   @Input() tourPoint: TourPoint;
   @Input() shouldEdit: boolean = false;
   @Input() shouldAddPoint: boolean = false;
-  @Input() tour: Tour;
+  @Input() tour: TourGo;
   idTourPoint: number;
   elevationData: any;
   totalDistance: number;

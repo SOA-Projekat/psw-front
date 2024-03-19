@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MarketplaceService } from '../marketplace.service';
 import { ActivatedRoute } from '@angular/router';
-import { Tour } from '../../tour-authoring/tour/model/tour.model';
+import { Tour, TourGo } from '../../tour-authoring/tour/model/tour.model';
 import { AuthService } from 'src/app/infrastructure/auth/auth.service';
 import { ShoppingCart, OrderItem } from '../model/shopping-cart.model';
 import {forkJoin} from "rxjs";
@@ -17,7 +17,7 @@ export class TourDetailsComponent implements OnInit{
 
   shoppingCart: ShoppingCart = {} as ShoppingCart;
   tourId: number;
-  tour: Tour = {} as Tour;
+  tour: TourGo = {} as TourGo;
   tokens: TourPurchaseToken[] = [];
   buyButton: boolean;
 
@@ -28,7 +28,7 @@ export class TourDetailsComponent implements OnInit{
   ngOnInit(): void {
     this.tourId = +this.route.snapshot.paramMap.get('id')!;
     this.service.getSelectedTour(this.tourId).subscribe({
-      next: (result: Tour)=>{
+      next: (result: TourGo)=>{
         this.tour = result;
         this.getDiscount();
         console.log(this.tour.price);

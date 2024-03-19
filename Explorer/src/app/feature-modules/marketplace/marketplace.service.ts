@@ -8,7 +8,7 @@ import { Preferences } from './model/preferences.model';
 
 
 import { TourReview } from './model/tourReview.model';
-import { Tour } from '../tour-authoring/tour/model/tour.model';
+import { Tour, TourGo } from '../tour-authoring/tour/model/tour.model';
 import { ReviewTour } from './tours-show/ReviewTour.model';
 
 
@@ -356,8 +356,8 @@ export class MarketplaceService {
       'https://localhost:44333/api/marketplace'
     );
   }
-  getSelectedTour(id: number): Observable<Tour> {
-    return this.http.get<Tour>('https://localhost:44333/api/marketplace/selectedTour/' + id);
+  getSelectedTour(id: number): Observable<TourGo> {
+    return this.http.get<TourGo>('https://localhost:44333/api/marketplace/selectedTour/' + id);
   } 
 
   /*getShoppingCart(touristId: number): Observable<ShoppingCart>{

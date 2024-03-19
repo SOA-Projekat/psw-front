@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Tour } from '../tour/model/tour.model';
+import { Tour, TourGo } from '../tour/model/tour.model';
 import { TokenStorage } from 'src/app/infrastructure/auth/jwt/token.service';
 import { TourAuthoringService } from '../tour-authoring.service';
 import { Router } from '@angular/router';
@@ -21,7 +21,7 @@ import { FormControl } from '@angular/forms';
 export class TourTouristComponent implements OnInit {
   publicTourPoints: PublicTourPoint[] = [];
   tours: Tour[] = [];
-  selectedTour: Tour;
+  selectedTour: TourGo;
   temporaryTourPoints: PublicTourPoint[] = [];
   shouldRenderTourForm: boolean = false;
   page: number = 1;

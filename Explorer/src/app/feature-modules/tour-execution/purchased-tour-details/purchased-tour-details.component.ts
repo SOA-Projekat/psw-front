@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Tour } from '../../tour-authoring/tour/model/tour.model';
+import { Tour, TourGo } from '../../tour-authoring/tour/model/tour.model';
 import { MarketplaceService } from '../../marketplace/marketplace.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TourExecutionService } from '../tour-execution.service';
@@ -12,7 +12,7 @@ import { AuthService } from 'src/app/infrastructure/auth/auth.service';
 })
 export class PurchasedTourDetailsComponent implements OnInit{
 
-  tour: Tour = {} as Tour;
+  tour: TourGo = {} as TourGo;
   touristId: number
 
   constructor(private marketplaceService: MarketplaceService, private auth: AuthService, private executionService: TourExecutionService, private route: ActivatedRoute, private router: Router){}
@@ -21,7 +21,7 @@ export class PurchasedTourDetailsComponent implements OnInit{
     this.getLogedUser()
     const tourId = +this.route.snapshot.paramMap.get('id')!;
     this.marketplaceService.getSelectedTour(tourId).subscribe({
-      next: (result: Tour)=>{
+      next: (result: TourGo)=>{
         this.tour = result;
         console.log(this.tour.price);
         console.log(this.tour);

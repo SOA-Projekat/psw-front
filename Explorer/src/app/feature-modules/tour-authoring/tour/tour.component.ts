@@ -28,7 +28,7 @@ export class TourComponent implements OnInit {
   coupons: Coupon[] = [];
   tour: Tour[] = [];
   tourGO: TourGo[]= [];
-  selectedTour: Tour;
+  selectedTour: TourGo;
   page: number = 1;
   pageSize: number = 20;
   tourCounter: number;
@@ -116,7 +116,7 @@ export class TourComponent implements OnInit {
     this.loadTours();
   }
 
-  openEquipmentDialog(tour: Tour) {
+  openEquipmentDialog(tour: TourGo) {
     this.selectedTour = tour;
     console.log(this.selectedTour);
     this.loadEquipment();
@@ -255,7 +255,7 @@ export class TourComponent implements OnInit {
   }
   }
 
-  onAddPoint(tour: Tour): void {
+  onAddPoint(tour: TourGo): void {
     this.selectedTour = tour;
     var emissionString = '';
     if (this.shouldAddPoint == true) {
@@ -267,10 +267,10 @@ export class TourComponent implements OnInit {
     this.shouldAddObject = false;
     this.showTourForm = false;
     this.service.changeTourId(emissionString);
-    this.loadPublicTourPoints(tour);
+    //this.loadPublicTourPoints(tour);
   }
 
-  onAddObj(tour: Tour): void {
+  onAddObj(tour: TourGo): void {
     this.selectedTour = tour;
     this.shouldAddObject = true;
     var emissionString = '';
@@ -340,21 +340,21 @@ export class TourComponent implements OnInit {
   }
 
 
-  onEditClicked(tour: Tour): void {
+  onEditClicked(tour: TourGo): void {
     this.shouldEdit = true;
     this.showTourForm = false;
     this.shouldRenderTourForm = true;
     this.selectedTour = tour;
   }
 
-  loadPublicTourPoints(tour:Tour) {
-      this.service.getPublicTourPoints().subscribe((pagedResults: PagedResults<PublicTourPoint>) => {
-          this.publicTourPoint = pagedResults.results;
-          this.publicTourPointsForTour = this.publicTourPoint.filter(ptp => {
-            return !tour.tourPoints.some(tp => tp.name === ptp.name);
-          });
-        });
-  }
+  // loadPublicTourPoints(tour:Tour) {
+  //     this.service.getPublicTourPoints().subscribe((pagedResults: PagedResults<PublicTourPoint>) => {
+  //         this.publicTourPoint = pagedResults.results;
+  //         this.publicTourPointsForTour = this.publicTourPoint.filter(ptp => {
+  //           return !tour.tourPoints.some(tp => tp.name === ptp.name);
+  //         });
+  //       });
+  // }
 
 
   // onAddPublicPoint(t:Tour,ptp:PublicTourPoint){
