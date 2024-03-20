@@ -53,12 +53,20 @@ export class AdministrationService {
   }*/
 
   getAccounts(): Observable<Account[]> {
-    return this.http.get<Account[]>(environment.apiHost + 'administration/accounts');
+    return this.http.get<Account[]>('http://localhost:8083/accounts');
   }
 
   changeAccountStatus(account: Account): Observable<Account> {
-    return this.http.put<Account>(environment.apiHost + 'administration/accounts/' + account.userId, account);
+    return this.http.put<Account>('http://localhost:8083/accounts' , account);
   }
+
+  /*getAccounts(): Observable<Account[]> {
+    return this.http.get<Account[]>(environment.apiHost+ 'administration/accounts');
+  }
+
+  changeAccountStatus(account: Account): Observable<Account> {
+    return this.http.put<Account>(environment.apiHost+ 'administration/accounts/' + account.userId , account);
+  }*/
 
 
   getProfile(id: number): Observable<Profile>{
