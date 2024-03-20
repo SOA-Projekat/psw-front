@@ -27,6 +27,7 @@ import { TourTouristComponent } from './tour-tourist/tour-tourist.component';
 import { TourStatisticsComponent } from './tour-statistics/tour-statistics.component';
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 import { BrowserModule } from '@angular/platform-browser';
+import { TourEquipmentGoComponent } from './tour-equipment-go/tour-equipment-go.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { BrowserModule } from '@angular/platform-browser';
     TourBundlesShowComponent,
 
     TourTouristComponent,
-      TourStatisticsComponent,
+    TourStatisticsComponent,
+    TourEquipmentGoComponent,
 
   ],
 
@@ -69,6 +71,7 @@ import { BrowserModule } from '@angular/platform-browser';
     TourPointsComponent,
     TourObjectComponent,
     ObjectFormComponent,
+    
   ],
 })
 export class TourAuthoringModule {}

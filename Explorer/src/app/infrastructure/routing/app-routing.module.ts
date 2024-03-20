@@ -96,6 +96,7 @@ import { OneCompetitionComponent } from 'src/app/feature-modules/competition/one
 import { WinnerApplyComponent } from 'src/app/feature-modules/competition/winner-apply/winner-apply.component';
 import { ApplyFormComponent } from 'src/app/feature-modules/competition/apply-form/apply-form.component';
 import { TourGoOverviewComponent } from 'src/app/feature-modules/administration/tour-go-overview/tour-go-overview.component';
+import { TourEquipmentGoComponent } from 'src/app/feature-modules/tour-authoring/tour-equipment-go/tour-equipment-go.component';
 
 
 const routes: Routes = [
@@ -170,6 +171,7 @@ const routes: Routes = [
   { path: 'tour-tourist', component: TourTouristComponent },
   { path: 'compositeTours', component: CompositeToursComponent},
   { path: 'statistics', component: UserStatisticsComponent},
+  { path: 'equipmentGo', component: TourEquipmentGoComponent},
 
   { path: 'compositeTours', component: CompositeToursComponent },
   {

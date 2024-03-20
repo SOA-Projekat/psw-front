@@ -392,4 +392,19 @@ export class TourAuthoringService {
   }
 
 
+  addEquipmentGo(equipment: Equipment): Observable<Equipment> {
+    console.log(equipment);
+    return this.http.post<Equipment>(
+      environment.apiHost + 'administration/equipment',
+      equipment
+    );
+  }
+
+  updateEquipmentGo(equipment: Equipment): Observable<Equipment> {
+    console.log(equipment);
+    return this.http.put<Equipment>(
+      environment.apiHost + 'administration/equipment',
+      equipment
+    );
+  }
 }

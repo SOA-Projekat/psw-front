@@ -30,86 +30,86 @@ export class EquipmentDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.selectedTour);
-    if (this.selectedTour) {
-      this.equipmentService
-        .getEquipment()
-        .subscribe((pagedResults: PagedResults<Equipment>) => {
-          this.equipment = pagedResults.results;
+    // console.log(this.selectedTour);
+    // if (this.selectedTour) {
+    //   this.equipmentService
+    //     .getEquipment()
+    //     .subscribe((pagedResults: PagedResults<Equipment>) => {
+    //       this.equipment = pagedResults.results;
 
-          this.equipment.forEach((equipmentItem) => {
-            equipmentItem.selected = this.setSelectedStatus(equipmentItem);
-          });
-        });
-    }
+    //       this.equipment.forEach((equipmentItem) => {
+    //         equipmentItem.selected = this.setSelectedStatus(equipmentItem);
+    //       });
+    //     });
+    // }
   }
 
-  setSelectedStatus(equipmentItem: Equipment): boolean {
-    if (this.selectedTour && this.selectedTour.id !== undefined) {
-      const tourId = this.selectedTour.id;
-      console.log(tourId);
-      if (tourId) {
-        this.toureqService
-          .getEquipmentForTour(tourId)
-          .subscribe((tourEquipmentList: EquipmentTour[]) => {
-            const selectedEquipmentIds = tourEquipmentList.map(
-              (item) => item.equipmentId
-            );
-            console.log('Tour Equipment List:', tourEquipmentList);
+  // setSelectedStatus(equipmentItem: Equipment): boolean {
+  //   if (this.selectedTour && this.selectedTour.id !== undefined) {
+  //     const tourId = this.selectedTour.id;
+  //     console.log(tourId);
+  //     if (tourId) {
+  //       this.toureqService
+  //         .getEquipmentForTour(tourId)
+  //         .subscribe((tourEquipmentList: EquipmentTour[]) => {
+  //           const selectedEquipmentIds = tourEquipmentList.map(
+  //             (item) => item.equipmentId
+  //           );
+  //           console.log('Tour Equipment List:', tourEquipmentList);
 
-            console.log('Selected Equipment IDs:', selectedEquipmentIds);
+  //           console.log('Selected Equipment IDs:', selectedEquipmentIds);
 
-            this.equipmentService
-              .getEquipment()
-              .subscribe((pagedResults: PagedResults<Equipment>) => {
-                this.equipment = pagedResults.results;
-                this.equipment.forEach((equipment) => {
-                  equipment.selected = selectedEquipmentIds.includes(
-                    equipment.id
-                  );
+  //           this.equipmentService
+  //             .getEquipment()
+  //             .subscribe((pagedResults: PagedResults<Equipment>) => {
+  //               this.equipment = pagedResults.results;
+  //               this.equipment.forEach((equipment) => {
+  //                 equipment.selected = selectedEquipmentIds.includes(
+  //                   equipment.id
+  //                 );
 
-                  if (equipment.selected === true) {
-                    console.log('AAAAAAAAA');
-                    equipmentItem.selected === true;
-                  }
-                });
-              });
-          });
-      }
-    }
+  //                 if (equipment.selected === true) {
+  //                   console.log('AAAAAAAAA');
+  //                   equipmentItem.selected === true;
+  //                 }
+  //               });
+  //             });
+  //         });
+  //     }
+  //   }
 
-    return true;
-  }
+  //   return true;
+  // }
 
-  dodajOpremu() {
-    if (this.selectedTour) {
-      this.equipment.forEach((item) => {
-        if (item.selected && item.id !== undefined) {
-          if (this.selectedTour.id) {
-            this.toureqService
-              .addEquipment(this.selectedTour.id, item.id)
-              .subscribe((result) => {
-                if (result) {
-                  item.selected = true;
-                }
-              });
-          }
-        }
-      });
+  // dodajOpremu() {
+  //   if (this.selectedTour) {
+  //     this.equipment.forEach((item) => {
+  //       if (item.selected && item.id !== undefined) {
+  //         if (this.selectedTour.id) {
+  //           this.toureqService
+  //             .addEquipment(this.selectedTour.id, item.id)
+  //             .subscribe((result) => {
+  //               if (result) {
+  //                 item.selected = true;
+  //               }
+  //             });
+  //         }
+  //       }
+  //     });
 
-      this.equipment.forEach((item) => {
-        if (!item.selected && item.id !== undefined) {
-          if (this.selectedTour.id) {
-            this.toureqService
-              .deleteEquipment(this.selectedTour.id, item.id)
-              .subscribe((result) => {
-                if (result) {
-                  item.selected = false;
-                }
-              });
-          }
-        }
-      });
-    }
-  }
+  //     this.equipment.forEach((item) => {
+  //       if (!item.selected && item.id !== undefined) {
+  //         if (this.selectedTour.id) {
+  //           this.toureqService
+  //             .deleteEquipment(this.selectedTour.id, item.id)
+  //             .subscribe((result) => {
+  //               if (result) {
+  //                 item.selected = false;
+  //               }
+  //             });
+  //         }
+  //       }
+  //     });
+  //   }
+  // }
 }

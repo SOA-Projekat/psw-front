@@ -313,7 +313,7 @@ styles: [`
       this.service.addTour(tour).subscribe({
         next: (result: TourGo) => {
           this.getTourObjects(result.id || 0);
-          this.addComplexTourEquipment(result.id || 0);
+         // this.addComplexTourEquipment(result.id || 0);
           this.dialogRef.close();
           this.router.navigate(['/compositeTours']);
         },
@@ -351,37 +351,37 @@ styles: [`
         return DifficultyLevel.Hard
     }
 
-    findComplexTourEquipment(): Observable<number[]> {
-      const observables = this.todo.map(tour => this.toureqService.getEquipmentForTour(tour.id || 0));
+    // findComplexTourEquipment(): Observable<number[]> {
+    //   const observables = this.todo.map(tour => this.toureqService.getEquipmentForTour(tour.id || 0));
     
-      return forkJoin(observables).pipe(
-        map((results: EquipmentTour[][]) => {
-          const uniqueEquipmentIds: number[] = [];
-          results.forEach(tourEquipmentList => {
-            tourEquipmentList.forEach(te => {
-              console.log(te.equipmentId);
-              if (!uniqueEquipmentIds.includes(te.equipmentId || 0)) {
-                uniqueEquipmentIds.push(te.equipmentId || 0);
-              }
-            });
-          });
-          console.log("LENGTH: ", uniqueEquipmentIds.length);
-          return uniqueEquipmentIds;
-        })
-      );
-    }
+    //   return forkJoin(observables).pipe(
+    //     map((results: EquipmentTour[][]) => {
+    //       const uniqueEquipmentIds: number[] = [];
+    //       results.forEach(tourEquipmentList => {
+    //         tourEquipmentList.forEach(te => {
+    //           console.log(te.equipmentId);
+    //           if (!uniqueEquipmentIds.includes(te.equipmentId || 0)) {
+    //             uniqueEquipmentIds.push(te.equipmentId || 0);
+    //           }
+    //         });
+    //       });
+    //       console.log("LENGTH: ", uniqueEquipmentIds.length);
+    //       return uniqueEquipmentIds;
+    //     })
+    //   );
+    // }
 
-    addComplexTourEquipment(tourId: number): void {
-      this.findComplexTourEquipment().subscribe((equipmentsIds) => {
-        console.log(equipmentsIds);
+    // addComplexTourEquipment(tourId: number): void {
+    //   this.findComplexTourEquipment().subscribe((equipmentsIds) => {
+    //     console.log(equipmentsIds);
     
-        equipmentsIds.forEach((eqId) => {
-          console.log("tour id: ", tourId);
-          console.log("item id", eqId);
-          this.toureqService.addEquipment(tourId, eqId || 0).subscribe();
-        });
-      });
-    }
+    //     equipmentsIds.forEach((eqId) => {
+    //       console.log("tour id: ", tourId);
+    //       console.log("item id", eqId);
+    //       this.toureqService.addEquipment(tourId, eqId || 0).subscribe();
+    //     });
+    //   });
+    // }
 
     // makeTourPointsForAll() : TourPoint[] {
     //   var tourPoints: TourPoint[] = [];

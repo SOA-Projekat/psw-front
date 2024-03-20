@@ -1,0 +1,12 @@
+<div class="container">
+    <h1>Equipment Management</h1>
+    <div id="equipment-form">
+        <h2>{{ isUpdateMode ? 'Update Equipment' : 'Add Equipment' }}</h2>
+        <input type="text" id="name" placeholder="Name" [(ngModel)]="equipment.name">
+        <input type="text" id="description" placeholder="Description" [(ngModel)]="equipment.description">
+        <input type="number" id="tourID" placeholder="Tour ID" [(ngModel)]="equipment.tourID">
+        <input *ngIf="isUpdateMode" type="number" id="id" placeholder="Equipment ID" [(ngModel)]="equipment.id">
+        <button (click)="submitForm()">{{ isUpdateMode ? 'Update' : 'Add' }} Equipment</button>
+        <button (click)="toggleUpdateMode()">Update Mode</button>
+    </div>
+</div>

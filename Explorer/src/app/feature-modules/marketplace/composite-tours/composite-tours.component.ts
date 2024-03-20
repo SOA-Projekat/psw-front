@@ -38,26 +38,26 @@ constructor(
 }
 
   ngOnInit(): void {
-    this.loadTours();
+    //this.loadTours();
   }
 
-  loadTours() {
-    const userId = this.tokenStorage.getUserId();
+  // loadTours() {
+  //   const userId = this.tokenStorage.getUserId();
 
-    this.service.getTourByGuide(userId, this.page, this.pageSize).subscribe({
-      next: (result: PagedResults<Tour>) => {
-        this.extendedTours = result.results;
-        this.extendedTours.forEach(tour => {
-          this.getEquipments().subscribe((tourEquipments: Equipment[]) => {
-            tour.equipments = tourEquipments;
-          });
-        })
-      },
-      error(err: any) {
-        console.log(err);
-      },
-    });
-  }
+  //   this.service.getTourByGuide(userId, this.page, this.pageSize).subscribe({
+  //     next: (result: PagedResults<Tour>) => {
+  //       this.extendedTours = result.results;
+  //       this.extendedTours.forEach(tour => {
+  //         this.getEquipments().subscribe((tourEquipments: Equipment[]) => {
+  //           tour.equipments = tourEquipments;
+  //         });
+  //       })
+  //     },
+  //     error(err: any) {
+  //       console.log(err);
+  //     },
+  //   });
+  // }
 
   viewMap(idTour: number | undefined): void {
     if (idTour !== undefined) {
@@ -68,33 +68,33 @@ constructor(
   }
   
 
-  getEquipments(): Observable<Equipment[]> {
-    const observables = this.extendedTours.map(tour => this.toureqService.getEquipmentForTour(tour.id || 0));
-    const uniqueEquipmentIds: number[] = [];
+  // getEquipments(): Observable<Equipment[]> {
+  //   const observables = this.extendedTours.map(tour => this.toureqService.getEquipmentForTour(tour.id || 0));
+  //   const uniqueEquipmentIds: number[] = [];
   
-    return forkJoin(observables).pipe(
-      map((results: EquipmentTour[][]) => {
-        results.forEach(tourEquipmentList => {
-          tourEquipmentList.forEach(te => {
-            uniqueEquipmentIds.push(te.equipmentId || 0);
-          });
-        });
+  //   return forkJoin(observables).pipe(
+  //     map((results: EquipmentTour[][]) => {
+  //       results.forEach(tourEquipmentList => {
+  //         tourEquipmentList.forEach(te => {
+  //           uniqueEquipmentIds.push(te.equipmentId || 0);
+  //         });
+  //       });
   
   
-        var allEquipments: Equipment[] = [];
-        var tourEquipments: Equipment[] = [];
+  //       var allEquipments: Equipment[] = [];
+  //       var tourEquipments: Equipment[] = [];
   
-        this.equipmentService.getEquipment().subscribe((pagedResults: PagedResults<Equipment>) => {
-          allEquipments = pagedResults.results;
-          allEquipments.forEach((equipment) => {
-            if (uniqueEquipmentIds.includes(equipment.id || 0)) {
-              tourEquipments.push(equipment);
-            }
-          });
-        });
+  //       this.equipmentService.getEquipment().subscribe((pagedResults: PagedResults<Equipment>) => {
+  //         allEquipments = pagedResults.results;
+  //         allEquipments.forEach((equipment) => {
+  //           if (uniqueEquipmentIds.includes(equipment.id || 0)) {
+  //             tourEquipments.push(equipment);
+  //           }
+  //         });
+  //       });
   
-        return tourEquipments;
-      })
-    );
-  }
+  //       return tourEquipments;
+  //     })
+  //   );
+  // }
 }
