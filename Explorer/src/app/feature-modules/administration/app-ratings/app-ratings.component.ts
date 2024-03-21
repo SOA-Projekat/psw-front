@@ -23,7 +23,7 @@ export class AppRatingsComponent implements OnInit {
 
     this.service.getAppRatings().subscribe(
       (data) => {
-        this.appRatings = data.results;
+        this.appRatings = data;
       },
       (error) => {
         console.log(error);

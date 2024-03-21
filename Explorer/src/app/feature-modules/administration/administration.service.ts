@@ -78,11 +78,13 @@ export class AdministrationService {
   }
 
   // App ratings
-  getAppRatings(): Observable<PagedResults<AppRating>> {
-    return this.http.get<PagedResults<AppRating>>(environment.apiHost + 'administration/app-ratings')
+  getAppRatings(): Observable<AppRating[]> {
+    return this.http.get<AppRating[]>('http://localhost:8083/administration/app-ratings');
+   // return this.http.get<PagedResults<AppRating>>(environment.apiHost + 'administration/app-ratings')
   }
   addAppRating(rating: AppRating): Observable<AppRating> {
-    return this.http.post<AppRating>(environment.apiHost + 'administration/app-ratings', rating);
+    return this.http.post<AppRating>('http://localhost:8083/administration/app-ratings', rating);
+   // return this.http.post<AppRating>(environment.apiHost + 'administration/app-ratings', rating);
   }
 
   sendPublicTourPointrequest(tourPointId:number, authorId:number): Observable<TourPointRequest>{
