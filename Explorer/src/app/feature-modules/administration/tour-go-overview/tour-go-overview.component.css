@@ -1,0 +1,77 @@
+/* Style for the tour header */
+.tour-header {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .tour-name {
+    color: #333;
+    font-size: 24px;
+  }
+  
+  .price {
+    color: #666;
+    font-size: 18px;
+  }
+  
+  .description {
+    color: #444;
+    font-size: 16px;
+  }
+  
+  /* Style for tour info section */
+  .tour-info {
+    display: flex;
+  }
+  
+  .keypoints,
+  .equipments {
+    flex: 1;
+  }
+  
+  /* Style for key points */
+  .keypoints h3 {
+    color: #333;
+    font-size: 20px;
+  }
+  
+  .keypoints ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .keypoints li {
+    margin-bottom: 10px;
+  }
+  
+  /* Style for equipments */
+  .equipments h3 {
+    color: #333;
+    font-size: 20px;
+  }
+  
+  .equipments ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .equipments li {
+    margin-bottom: 20px;
+  }
+  
+  /* Style for delete button */
+  button {
+    background-color: #ff5555;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #cc0000;
+  }
+  

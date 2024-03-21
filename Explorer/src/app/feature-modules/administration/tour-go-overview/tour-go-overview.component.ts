@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TourGo } from '../../tour-authoring/tour/model/tour.model';
 import { AdministrationService } from '../administration.service';
 import { ActivatedRoute } from '@angular/router';
+import { TourAuthoringService } from '../../tour-authoring/tour-authoring.service';
 
 @Component({
   selector: 'xp-tour-go-overview',
@@ -12,9 +13,9 @@ import { ActivatedRoute } from '@angular/router';
 export class TourGoOverviewComponent {
   tour$: Observable<TourGo>;
   tourId: number;
-  tour: TourGo | null;// Declare the tour property here
+  tour: TourGo// Declare the tour property here
 
-  constructor(private route: ActivatedRoute,private service: AdministrationService) { }
+  constructor(private route: ActivatedRoute,private service: AdministrationService, private authoringService:TourAuthoringService,private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     const idParam = this.route.snapshot.paramMap.get('id');
@@ -84,4 +85,35 @@ fetchTour(tourId: number): void {
   });
 }
 
+deleteEquipment(id: number): void {
+  alert('Deleting equipment with ID: ' + id); // Alert the ID
+  this.authoringService.deleteEquipment(id).subscribe({
+    next: () => {
+      alert('Equipment deleted successfully');
+      // Assuming you want to update the tour after deleting the equipment
+      this.fetchTour(this.tourId);
+    },
+    error: (error: any) => {
+      alert('Error deleting equipment: ' + JSON.stringify(error));
+      console.error('Error deleting equipment:', error); // Log the error
+    }
+  });
+}
+
+
+deleteTourPointGo(id: number): void {
+  this.authoringService.deleteTourPointGo(id).subscribe({
+    next: () => {
+      console.log('TourPoint deleted successfully');
+      // Remove the deleted tour point from the tour points array
+      this.tour.tourPoints = this.tour.tourPoints.filter(point => point.id !== id);
+      // Trigger change detection
+      this.cdr.detectChanges();
+    },
+    error: (error: any) => {
+      console.error('Error deleting tour point:', error);
+      alert('Error deleting tour point: ' + JSON.stringify(error));
+    }
+  });
+}
 }

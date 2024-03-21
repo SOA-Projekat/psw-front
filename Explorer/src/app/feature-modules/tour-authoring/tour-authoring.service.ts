@@ -407,4 +407,11 @@ export class TourAuthoringService {
       equipment
     );
   }
+
+  deleteEquipment(id: number): any {
+    return this.http.delete<any>('https://localhost:44333/api/administration/equipment/' + id);
+  }
+  deleteTourPointGo(id: number): any {
+    return this.http.delete<any>('https://localhost:44333/api/administration/tourPoint/' + id);
+  }
 }

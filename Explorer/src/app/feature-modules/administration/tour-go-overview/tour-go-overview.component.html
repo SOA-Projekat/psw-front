@@ -12,7 +12,7 @@
                 <li *ngFor="let keyPoint of tour?.tourPoints">
                     <p><strong>Name:</strong> {{ keyPoint.name }}</p>
                     <p><strong>Description:</strong> {{ keyPoint.description }}</p>
-                    <!-- Add more details here if needed -->
+                    <button *ngIf="keyPoint.id !== undefined" (click)="deleteTourPointGo(keyPoint.id)">Delete</button>
                 </li>
             </ul>
         </div>
@@ -23,7 +23,8 @@
                 <li *ngFor="let equipment of tour?.equipments">
                     <p><strong>Name:</strong> {{ equipment.name }}</p>
                     <p><strong>Description:</strong> {{ equipment.description }}</p>
-                    <!-- Add more details here if needed -->
+                    <button *ngIf="equipment.id !== undefined" (click)="deleteEquipment(equipment.id)">Delete</button>
+
                 </li>
             </ul>
         </div>
